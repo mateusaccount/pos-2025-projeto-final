@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from backend.api.views import TarefaViewSet
+from biblioteca.views import LivroViewSet, ComentarioViewSet 
 
 router = DefaultRouter()
-router.register(r'tarefas', TarefaViewSet)
+router.register(r'livros', LivroViewSet)
+router.register(r'comentarios', ComentarioViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
