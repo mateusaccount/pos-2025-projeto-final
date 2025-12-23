@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from backend.biblioteca.views import LivroViewSet, ComentarioViewSet
+from django.views.generic import RedirectView
 
 router = DefaultRouter()
 router.register(r'livros', LivroViewSet)
@@ -10,4 +11,5 @@ router.register(r'comentarios', ComentarioViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('', RedirectView.as_view(url='/api/livros/', permanent=False)),
 ]
