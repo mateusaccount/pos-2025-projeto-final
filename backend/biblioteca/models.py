@@ -4,19 +4,19 @@ class Livro(models.Model):
     titulo = models.CharField(max_length=200)
     autor = models.CharField(max_length=100)
     ano_publicacao = models.IntegerField()
-    capa_url = models.URLField(blank=True, null=True) # Link da imagem da capa
+    capa_url = models.URLField(blank=True, null=True)
     resumo = models.TextField(blank=True)
+    pdf_url = models.URLField(blank=True, null=True, verbose_name="Link do PDF") 
     criado_em = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.titulo
 
 class Comentario(models.Model):
-    # O parametro related_name='comentarios' permite acessar os comentários a partir do livro
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE, related_name='comentarios')
     usuario = models.CharField(max_length=100, default="Anônimo")
     texto = models.TextField()
-    nota = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)]) # Nota de 1 a 5
+    nota = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)]) 
     data = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
